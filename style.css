@@ -300,6 +300,14 @@ body {
     box-shadow: 0 4px 12px var(--shadow);
 }
 
+.projects-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+}
+
 /* Sections */
 section {
     padding: 5rem 0;
@@ -436,13 +444,32 @@ section {
 /* Team Section */
 .team {
     background-color: var(--mantle);
+    padding: 5rem 0;
 }
 
-.team-grid {
+.team-category {
+    margin-bottom: 4rem;
+}
+
+.team-category h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.team-description {
+    text-align: center;
+    color: var(--subtext1);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.team-members {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
-    margin-top: 3rem;
 }
 
 .team-card {
@@ -470,9 +497,17 @@ section {
     font-size: 2rem;
     margin: 0 auto 1rem;
     color: var(--base);
+    overflow: hidden;
 }
 
-.team-card h3 {
+.team-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.team-card h4 {
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--text);
@@ -488,6 +523,18 @@ section {
 .team-card p {
     color: var(--subtext0);
     line-height: 1.6;
+}
+
+.github-link {
+    display: inline-block;
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.github-link:hover {
+    color: var(--lavender);
 }
 
 /* Contact Section */
@@ -532,36 +579,54 @@ section {
     padding: 2rem;
     border-radius: 12px;
     border: 1px solid var(--surface0);
+    text-align: center;
 }
 
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
+.contact-whatsapp h3 {
     color: var(--text);
-    font-weight: 500;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
 }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid var(--surface0);
+.contact-whatsapp p {
+    color: var(--subtext0);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.contact-whatsapp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 12px 24px;
+    background-color: #25D366;
+    color: white;
+    text-decoration: none;
     border-radius: 8px;
-    background-color: var(--base);
-    color: var(--text);
-    font-family: inherit;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--blue);
+.whatsapp-btn:hover {
+    background-color: #128C7E;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
 }
 
 /* Footer */
@@ -652,6 +717,11 @@ section {
         align-items: center;
     }
     
+    .projects-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
     .contact-content {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -659,7 +729,7 @@ section {
     
     .about-grid,
     .projects-grid,
-    .team-grid {
+    .team-members {
         grid-template-columns: 1fr;
     }
     
