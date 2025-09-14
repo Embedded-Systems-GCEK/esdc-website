@@ -36,6 +36,39 @@
     --overlay: rgba(76, 79, 105, 0.05);
 }
 
+/* Dark Mode - Catppuccin Mocha */
+.dark-mode {
+    --base: #1e1e2e;
+    --mantle: #181825;
+    --crust: #11111b;
+    
+    --text: #cdd6f4;
+    --subtext1: #bac2de;
+    --subtext0: #a6adc8;
+    
+    --surface0: #313244;
+    --surface1: #45475a;
+    --surface2: #585b70;
+    
+    --rosewater: #f5e0dc;
+    --flamingo: #f2cdcd;
+    --pink: #f5c2e7;
+    --mauve: #cba6f7;
+    --red: #f38ba8;
+    --maroon: #eba0ac;
+    --peach: #fab387;
+    --yellow: #f9e2af;
+    --green: #a6e3a1;
+    --teal: #94e2d5;
+    --sky: #89dceb;
+    --sapphire: #74c7ec;
+    --blue: #89b4fa;
+    --lavender: #b4befe;
+    
+    --shadow: rgba(0, 0, 0, 0.3);
+    --overlay: rgba(0, 0, 0, 0.1);
+}
+
 /* Reset and base styles */
 * {
     margin: 0;
@@ -67,6 +100,11 @@ body {
     border-bottom: 1px solid var(--surface0);
     z-index: 1000;
     padding: 1rem 0;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode .navbar {
+    background-color: rgba(30, 30, 46, 0.95);
 }
 
 .nav-container {
@@ -130,6 +168,31 @@ body {
     margin: 3px 0;
     transition: 0.3s;
     border-radius: 3px;
+}
+
+.theme-toggle {
+    margin-left: 1rem;
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-btn:hover {
+    background-color: var(--surface0);
+}
+
+.theme-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
 }
 
 /* Hero Section */

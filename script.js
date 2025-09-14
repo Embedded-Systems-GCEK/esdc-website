@@ -40,10 +40,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navbar background on scroll
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('.navbar');
+        const isDark = document.body.classList.contains('dark-mode');
         if (window.scrollY > 50) {
-            navbar.style.backgroundColor = 'rgba(239, 241, 245, 0.98)';
+            navbar.style.backgroundColor = isDark ? 'rgba(30, 30, 46, 0.98)' : 'rgba(239, 241, 245, 0.98)';
         } else {
-            navbar.style.backgroundColor = 'rgba(239, 241, 245, 0.95)';
+            navbar.style.backgroundColor = isDark ? 'rgba(30, 30, 46, 0.95)' : 'rgba(239, 241, 245, 0.95)';
         }
     });
 
@@ -244,21 +245,53 @@ function debounce(func, wait) {
     };
 }
 
-// Theme preference handling (for future dark mode support)
+// Theme preference handling
 function initializeTheme() {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const storedTheme = localStorage.getItem('theme');
     
-    if (storedTheme) {
-        document.documentElement.setAttribute('data-theme', storedTheme);
+    if (storedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        updateThemeIcon(true);
+    } else if (storedTheme === 'light') {
+        document.body.classList.remove('dark-mode');
+        updateThemeIcon(false);
     } else if (prefersDark) {
-        // Keep Latte theme as default for now, but this could be extended
-        document.documentElement.setAttribute('data-theme', 'latte');
+        document.body.classList.add('dark-mode');
+        updateThemeIcon(true);
+    }
+}
+
+function toggleTheme() {
+    const isDark = document.body.classList.contains('dark-mode');
+    if (isDark) {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('theme', 'light');
+        updateThemeIcon(false);
+    } else {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
+        updateThemeIcon(true);
+    }
+}
+
+function updateThemeIcon(isDark) {
+    const themeIcon = document.querySelector('.theme-icon');
+    if (themeIcon) {
+        themeIcon.textContent = isDark ? '☀️' : '🌙';
     }
 }
 
 // Initialize theme on load
 initializeTheme();
+
+// Theme toggle button
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', toggleTheme);
+    }
+});
 
 // Add resize event listener for responsive handling
 window.addEventListener('resize', debounce(function() {
