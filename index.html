@@ -8,7 +8,10 @@
     <meta name="description"
         content="Official website of Embedded Systems Design Club, Government College of Engineering Kannur">
     <link rel="icon" type="image/png" href="icons/logo.png">
-    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -27,6 +30,9 @@
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#team" class="nav-link">Team</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li id="login-nav-item" class="d-none"><a href="login.html" class="nav-link" id="login-btn">Login</a></li>
+                <li id="profile-nav-item" class="d-none"><a href="user_profile.html" class="nav-link" id="profile-link">Profile</a></li>
+                <li id="logout-nav-item" class="d-none"><a href="#" class="nav-link" id="logout-btn">Logout</a></li>
             </ul>
             <div class="theme-toggle">
                 <button id="theme-toggle-btn" class="theme-btn" aria-label="Toggle theme">
@@ -97,7 +103,7 @@
                 <p>Explore our innovative embedded systems projects</p>
             </div>
             <div class="projects-grid">
-                <div class="project-card">
+                <a href="projects/ai-voice-assistant.html" class="project-card">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1680783954745-3249be59e527?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             alt="AI Voice Assistant"
@@ -113,15 +119,15 @@
                             <span class="tag">Voice Recognition</span>
                         </div>
                     </div>
-                </div>
-                <div class="project-card">
+                </a>
+                <a href="projects/autonomous-robot.html" class="project-card">
                     <div class="project-image">
                         <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                             alt="Autonomous Robot"
                             style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
                     </div>
                     <div class="project-content">
-                        <h3>Autonomous Robot</h3>
+                        <h3>Humanoid Robot</h3>
                         <p>Line-following robot with obstacle avoidance capabilities using Arduino and various sensors.
                         </p>
                         <div class="project-tags">
@@ -130,7 +136,23 @@
                             <span class="tag">AI</span>
                         </div>
                     </div>
-                </div>
+                </a>
+                <a href="projects/" class="project-card">
+                    <div class="project-image">
+                        <img src="imgs/assistant_ui1.png"
+                            alt="AI Voice Assistant UI"
+                            style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <div class="project-content">
+                        <h3>AI Voice Assistant UI</h3>
+                        <p>Interactive user interface for AI-powered voice assistant with modern design and seamless user experience.</p>
+                        <div class="project-tags">
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">React</span>
+                        </div>
+                    </div>
+                </a>
                 <!-- <div class="project-card">
                     <div class="project-image">
                         <div class="project-placeholder">🏠</div>
@@ -606,7 +628,90 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script>
+        // Initialize Supabase
+        const supabase = window.supabase.createClient(window.SUPABASE_CONFIG.URL, window.SUPABASE_CONFIG.ANON_KEY);
+
+        // DOM elements for navigation (will be set after DOM loads)
+        let loginNavItem, profileNavItem, logoutNavItem, loginBtn, logoutBtn;
+
+        // Initialize authentication state
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Get DOM elements after DOM is loaded
+            loginNavItem = document.getElementById('login-nav-item');
+            profileNavItem = document.getElementById('profile-nav-item');
+            logoutNavItem = document.getElementById('logout-nav-item');
+            loginBtn = document.getElementById('login-btn');
+            logoutBtn = document.getElementById('logout-btn');
+
+            await checkAuthState();
+        });
+
+        async function checkAuthState() {
+            try {
+                const { data: { session } } = await supabase.auth.getSession();
+
+                if (session?.user) {
+                    showAuthenticatedNav();
+                } else {
+                    showUnauthenticatedNav();
+                }
+            } catch (error) {
+                console.error('Auth check error:', error);
+                showUnauthenticatedNav();
+            }
+        }
+
+        function showAuthenticatedNav() {
+            if (loginNavItem) loginNavItem.classList.add('d-none');
+            if (profileNavItem) profileNavItem.classList.remove('d-none');
+            if (logoutNavItem) logoutNavItem.classList.remove('d-none');
+        }
+
+        function showUnauthenticatedNav() {
+            if (loginNavItem) loginNavItem.classList.remove('d-none');
+            if (profileNavItem) profileNavItem.classList.add('d-none');
+            if (logoutNavItem) logoutNavItem.classList.add('d-none');
+        }
+
+        // Login functionality - now links to dedicated login page
+        // OAuth is handled on the login.html page
+
+        // Logout functionality
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                try {
+                    const { error } = await supabase.auth.signOut();
+                    if (error) throw error;
+
+                    showUnauthenticatedNav();
+                    alert('Successfully logged out!');
+
+                } catch (error) {
+                    console.error('Logout error:', error);
+                    alert('Logout failed: ' + error.message);
+                }
+            });
+        }
+
+        // Listen for auth state changes
+        supabase.auth.onAuthStateChange((event, session) => {
+            if (event === 'SIGNED_IN' && session) {
+                showAuthenticatedNav();
+            } else if (event === 'SIGNED_OUT') {
+                showUnauthenticatedNav();
+            }
+        });
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/script.js"></script>
 </body>
 
 </html>
