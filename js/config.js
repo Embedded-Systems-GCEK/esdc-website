@@ -23,7 +23,7 @@ const AUTH_PROVIDERS = {
 // GitHub OAuth Configuration - Client-side only (no server)
 const GITHUB_CONFIG = {
     CLIENT_ID: 'Ov23liJPTUu1tiN54ppx',
-    REDIRECT_URI: 'http://127.0.0.1:5500/login.html',
+    REDIRECT_URI: 'https://embedded-systems-gcek.github.io/esdc-website/login.html',
     SCOPE: 'read:user'
     // CLIENT_SECRET removed - not safe for client-side
 };
